@@ -9,7 +9,7 @@ class App extends React.Component {
       var i;
       return (
          <div>
-            Hello World. Trying to see if this works. Awesome!
+            Hello World! Trying to see if this works. Awesome!
             <br />
             And we&apos;re adding an image:
             <img src={require("./img/pic1.jpg").default} />

@@ -11,6 +11,16 @@
       "lint": "eslint --ext js,jsx,ts,tsx src",
       "lint:fix": "eslint --ext js,jsx,ts,tsx src --fix"
    },
+   "husky": {
+      "hooks": {
+         "pre-commit": "lint-staged"
+      }
+   },
+   "lint-staged": {
+      "*.{js,jsx,tsx,ts}": [
+         "eslint . --fix"
+      ]
+   },
    "keywords": [
       "freelance",
       "software",
