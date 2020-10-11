@@ -1,0 +1,9 @@
+$default-background: #d3d3d3;
+
+body {
+   background: $default-background;
+
+   background-image: url("./img/pic1.jpg");
+   background-repeat: no-repeat;
+   background-position: center;
+}

@@ -1,0 +1,42 @@
+{
+   "parser": "@typescript-eslint/parser",
+   "plugins": ["@typescript-eslint/eslint-plugin", "prettier"],
+   "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+         "jsx": true
+      }
+   },
+   "settings": {
+      "react": {
+         "version": "detect"
+      }
+   },
+   "env": {
+      "es6": true,
+      "browser": true,
+      "node": true,
+      "mocha": true
+   },
+   "extends": [
+      "plugin:react/recommended",
+      "prettier",
+      "plugin:prettier/recommended"
+   ],
+   "rules": {
+      "prettier/prettier": [
+         "error",
+         {
+            "endOfLine": "auto"
+         }
+      ],
+
+      "max-len": [1, 80, 2, { "ignoreComments": true }],
+      "semi": [2, "always"],
+      "object-curly-spacing": ["error", "always"],
+      "no-extra-parens": "error",
+      "no-multi-spaces": "error",
+      "no-unused-vars": ["error"]
+   }
+}
