@@ -6,6 +6,7 @@ import Main from "./components/Main";
 
 class App extends React.Component {
    render() {
+      var i;
       return (
          <div>
             Hello World. Trying to see if this works. Awesome!
