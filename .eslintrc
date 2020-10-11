@@ -37,6 +37,6 @@
       "object-curly-spacing": ["error", "always"],
       "no-extra-parens": "error",
       "no-multi-spaces": "error",
-      "no-unused-vars": ["error"]
+      "no-unused-vars": ["warn"]
    }
 }
