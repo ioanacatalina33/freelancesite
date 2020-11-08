@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+const { sendEmail } = require("./email.controller");
+var cors = require("cors");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,10 +11,18 @@ const mockResponse = {
    foo: "bar",
    bar: "foo",
 };
+
+app.use(cors());
 app.use(express.static(DIST_DIR));
 app.get("/api", (req, res) => {
    res.send(mockResponse);
 });
+
+app.post("/sendEmail", function (request, response) {
+   console.log("We 've got request to send email");
+   sendEmail(request, response);
+});
+
 app.get("/", (req, res) => {
    res.sendFile(HTML_FILE);
 });

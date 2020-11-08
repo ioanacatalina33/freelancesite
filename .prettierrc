@@ -3,5 +3,6 @@
    "tabWidth": 3,
    "semi": true,
    "singleQuote": false,
-   "endOfLine": "auto"
+   "endOfLine": "auto",
+   "maxLen": 140
 }

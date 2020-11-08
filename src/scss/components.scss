@@ -1,0 +1,394 @@
+@import "./common.scss";
+@import "./navbar.scss";
+@import "./resume.scss";
+@import "./flexClass.scss";
+
+a.active.focus,
+a.active:focus,
+a.focus,
+a:active.focus,
+a:active:focus,
+a:focus,
+button.active.focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button:active:focus,
+button:focus,
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+   outline: none !important;
+   box-shadow: none !important;
+}
+
+@function str-replace($string, $search, $replace: "") {
+   $index: str-index($string, $search);
+
+   @if $index {
+      @return str-slice($string, 1, $index - 1) + $replace +
+         str-replace(
+            str-slice($string, $index + str-length($search)),
+            $search,
+            $replace
+         );
+   }
+
+   @return $string;
+}
+
+@mixin svg($from, $to, $reverse: false) {
+   $polygons: '<polygon fill="#{$from}" points="0 100 0 0 100 0"/><polygon fill="#{$to}" points="100 0 100 100 0 100"/>';
+
+   @if $reverse == true {
+      $polygons: '<polygon fill="#{$from}" points="0 0 100 0 100 100"/><polygon fill="#{$to}" points="0 0 0 100 100 100"/>';
+   }
+
+   $svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">#{$polygons}</svg>';
+
+   $svg: str-replace($svg, "#", "%23");
+   $svg: str-replace($svg, "<", "%3C");
+   $svg: str-replace($svg, ">", "%3E");
+
+   width: 100%;
+   height: 7rem;
+   background-image: url("data:image/svg+xml,#{$svg}");
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
+}
+
+.separator {
+   $top-color: #f44336;
+   $bottom-color: #2196f3;
+
+   @include svg($top-color, $bottom-color);
+
+   &.reverse {
+      @include svg($top-color, $bottom-color, true);
+   }
+}
+
+.separator-transparent-below {
+   $bottom-color: $color-background;
+   @include svg(transparent, $bottom-color);
+   &.reverse {
+      @include svg(transparent, $bottom-color, true);
+   }
+}
+
+.separator-transparent-above {
+   $top-color: $color-background;
+   @include svg($top-color, transparent);
+
+   &.reverse {
+      @include svg($top-color, transparent, true);
+   }
+}
+
+.btn {
+   outline: none !important;
+   box-shadow: none !important;
+   border-radius: 0.1rem;
+}
+
+.button-main {
+   background-color: darken($color-secondary, 10);
+   border: 0;
+   padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+   border-radius: 0.2rem;
+   color: $color-text-bright;
+   @include transitionDefault();
+   &:hover {
+      background-color: $color-secondary !important;
+      @include transitionDefault();
+   }
+   &:active,
+   &:focus {
+      background-color: darken($color-secondary, 10);
+      @include transitionDefault();
+   }
+}
+
+.button-main-outline {
+   border-radius: 50rem;
+   border: solid $color-neutral;
+   border-width: thin;
+   -webkit-appearance: none;
+   background-color: transparent;
+   padding: 0.5rem 3rem 0.5rem 3rem;
+   min-height: 3.4rem;
+   margin: 0.1;
+   color: $color-text-bright;
+   // font-size: 1.2rem;
+   @include transitionDefault;
+   &:hover {
+      background-color: darken($color-neutral, 5);
+      @include transitionDefault;
+   }
+   &:active,
+   &:focus,
+   &:link {
+      background-color: transparent;
+      @include transitionDefault;
+   }
+}
+
+.form-control {
+   display: inline-block;
+   border: 1;
+   border-radius: 0.1rem;
+   height: 2.8rem;
+   outline: none !important;
+   box-shadow: none !important;
+   background-color: darken(white, 8);
+   margin: 0;
+   line-height: normal;
+   // font-size: 1.2rem;
+   @include transitionDefault;
+
+   &:hover,
+   &:focus {
+      background-color: white;
+      border-color: rgba($color-neutral, 1);
+      @include transitionDefault;
+   }
+
+   &:disabled {
+      background-color: darken($color-neutral, 20);
+      @include transitionDefault;
+   }
+}
+
+.hex {
+   position: relative;
+   margin: auto;
+   text-align: center;
+   overflow: hidden;
+   white-space: nowrap;
+   display: table;
+   float: left;
+   margin-right: 0rem;
+
+   @include md {
+      margin-right: 2rem;
+   }
+}
+.hex:before {
+   content: "";
+   padding-top: 120%;
+   display: inline-block;
+   vertical-align: middle;
+}
+.hex:after {
+   content: "";
+   position: absolute;
+   top: 0%;
+   left: -10%;
+   width: 120%;
+   padding-top: 120%;
+   transform: rotatey(55deg) rotate(-45deg);
+   text-align: center;
+   box-shadow: 0 0 0 200px white;
+}
+.hex img {
+   display: inline-block;
+   vertical-align: middle;
+   margin: 0 -10px;
+}
+
+.img-avatar {
+   border-radius: 50%;
+   border: 0.55rem solid rgba(255, 255, 255, 0.9);
+}
+
+.avatar-about-size {
+   border-radius: 0;
+   max-width: 100%;
+   @include sm {
+      max-width: 25rem;
+      border-radius: 50%;
+   }
+}
+
+.avatar-profile-size {
+   max-width: 50%;
+   @include sm {
+      max-width: 18rem;
+   }
+}
+
+.avatar-small-size {
+   border-radius: 50%;
+   border: 0.1rem solid rgba(0, 0, 0, 0.1);
+   max-width: 5rem;
+}
+
+.img-socialmedia {
+   max-width: 2rem;
+   opacity: 0.5;
+   margin: 0.5rem 0.3rem 0.5rem 0.3rem;
+   @include transitionDefault();
+
+   &:hover {
+      opacity: 1;
+      cursor: pointer;
+      @include transitionDefault();
+   }
+}
+
+.skills-logos {
+   max-width: 4rem;
+   height: auto;
+   @include md {
+      max-width: 6rem;
+   }
+}
+
+.portfolio-container {
+   a:link,
+   a:visited,
+   a:active {
+      color: $color-primary;
+      text-decoration: none;
+      @include transitionDefault();
+   }
+
+   /* mouse over link */
+   a:hover {
+      color: lighten($color-primary, 10);
+      text-decoration: none;
+      @include transitionDefault();
+   }
+}
+
+.portfolio-app-picture {
+   max-width: 100%;
+   height: auto;
+   border: 1px solid darken($color-neutral, 10);
+   @include transitionDefault();
+   border-radius: 3px;
+   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+   margin-bottom: 1rem;
+   &:hover {
+      @include transform(scale(1.1));
+   }
+
+   @include sm {
+      max-width: 20rem;
+   }
+}
+
+.testimonial-card {
+   border: 0px solid darken($color-neutral, 10);
+   @include transitionDefault();
+   max-width: 30rem;
+   border-radius: 1px;
+   box-shadow: 2px 3px 30px rgba(0, 0, 0, 0.2);
+   margin: 0.1rem;
+   @include md {
+      margin: 2rem;
+   }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+   height: auto;
+   width: 80px;
+   // outline: black;
+   background-size: 100%, 100%;
+   background-color: $color-neutral;
+   border-radius: 50%;
+   // border: 1px solid black;
+   background-image: none;
+   @include lg {
+      background-color: transparent;
+   }
+}
+
+.carousel-control-next-icon:after {
+   content: ">";
+   font-size: 35px;
+   width: 60px;
+   color: $color-primary;
+   @include lg {
+      font-size: 55px;
+      width: 60px;
+      padding-top: $padding-medium;
+   }
+}
+
+.carousel-control-prev-icon:after {
+   content: "<";
+   font-size: 35px;
+   color: $color-primary;
+   @include lg {
+      font-size: 55px;
+      padding-top: $padding-medium;
+   }
+}
+
+.box-dialog {
+   max-width: 30rem;
+   height: 100%;
+   background-color: lighten($color-neutral, 5);
+   padding: 20px;
+   position: relative;
+   border-radius: 0.3rem;
+   box-shadow: 2px 3px 20px rgba(0, 0, 0, 0.2);
+   margin: 0.5rem;
+   @include md {
+      margin: 2rem;
+   }
+   // float: right;
+}
+
+.box-dialog.arrow-left:after {
+   content: " ";
+   position: absolute;
+   left: -30px;
+   top: 25px;
+   border-top: 40px solid transparent;
+   border-right: 30px solid lighten($color-neutral, 5);
+   border-left: none;
+   border-bottom: 20px solid transparent;
+}
+
+.box-dialog.arrow-left:after {
+   content: " ";
+   position: absolute;
+   left: -30px;
+   top: 25px;
+   border-top: 40px solid transparent;
+   border-right: 30px solid lighten($color-neutral, 5);
+   border-left: none;
+   border-bottom: 20px solid transparent;
+}
+
+.box-dialog.arrow-top {
+   margin-top: 40px;
+}
+
+.box-dialog.arrow-top:after {
+   content: " ";
+   position: absolute;
+   left: 30px;
+   top: -25px;
+   border-top: none;
+   border-right: 35px solid transparent;
+   border-left: 60px solid transparent;
+   border-bottom: 30px solid lighten($color-neutral, 5);
+}
+
+.span-link {
+   cursor: pointer;
+   color: $color-secondary;
+   @include transitionDefault();
+
+   &:hover {
+      color: darken($color-secondary, 20);
+      @include transitionDefault();
+   }
+}

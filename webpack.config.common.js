@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
    entry: path.resolve(__dirname, "src", "index.tsx"),
    output: {
@@ -8,9 +8,9 @@ module.exports = {
       filename: "index_bundle.js",
    },
    plugins: [
-      new CleanWebpackPlugin({
-         cleanAfterEveryBuildPatterns: ["dist"],
-      }),
+      // new CleanWebpackPlugin({
+      //    cleanAfterEveryBuildPatterns: ["dist"],
+      // }),
       new HtmlWebpackPlugin({
          title: "Minimum-Viable",
          filename: "index.html",
@@ -43,7 +43,7 @@ module.exports = {
                "style-loader",
                {
                   loader: "css-loader",
-                  options: { modules: true },
+                  options: { modules: false },
                },
                "sass-loader",
             ],
@@ -66,14 +66,13 @@ module.exports = {
                   options: {
                      limit: 20000,
                      name: "img/[name]-[hash].[ext]",
-                     //   esModule: false  // fix for require(...)
                   },
                },
                {
                   loader: "image-webpack-loader",
                   options: {
-                     bypassOnDebug: true, // webpack@1.x
-                     disable: false, // webpack@2.x and newer
+                     bypassOnDebug: true,
+                     disable: false,
                   },
                },
             ],

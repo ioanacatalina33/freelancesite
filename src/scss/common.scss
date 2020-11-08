@@ -1,0 +1,246 @@
+//colors
+$color-primary: #002657;
+$color-secondary: #4da9df; //#01afff;
+$color-neutral: #d8e9f1;
+
+$color-background: white;
+$color-text: #222222;
+$color-text-bright: #eaeaea;
+
+$color-background-header: $color-primary;
+$color-header: $color-text-bright;
+
+$color-background-footer: $color-primary;
+$color-footer: $color-text-bright;
+
+//dimensions
+$width-main: 1280px;
+$width-narrow: 1024px;
+$width-wide: 1440px;
+$width-one-column: 700px;
+
+//text sizes
+
+$text-normal-md: 1.2rem;
+$text-small: 0.8rem;
+
+$text-giant-lg: 3rem;
+$text-extra-large-lg: 2.4rem;
+$text-large-lg: 1.8rem;
+$text-medium-lg: 1.6rem;
+
+//tablets
+$text-giant-md: 2.2rem;
+$text-extra-large-md: 1.8rem;
+$text-large-md: 1.6rem;
+$text-medium-md: 1.2rem;
+
+//phones
+$text-giant-sm: 1.8rem;
+$text-extra-large-sm: 1.4rem;
+$text-large-sm: 1.4rem;
+$text-medium-sm: 1.2rem;
+
+//small
+$text-giant: 1.8rem;
+$text-extra-large: 1.3rem;
+$text-large: 1.2rem;
+$text-medium: 1.1rem;
+$text-normal: 1rem;
+
+$letter-sp: 1px;
+
+@font-face {
+   font-family: "Mollen-RegularPersonalUse";
+   src: local("Mollen-RegularPersonalUse"),
+      url(../fonts/Mollen-RegularPersonalUse.otf) format("truetype");
+}
+
+@font-face {
+   font-family: "Varela-Round";
+   src: local("Varela Round"),
+      url(../fonts/VarelaRound-Regular.ttf) format("truetype");
+}
+
+@font-face {
+   font-family: "HighlandGothicFLF";
+   src: local("HighlandGothicFLF"),
+      url(../fonts/HighlandGothicFLF.ttf) format("truetype");
+}
+
+//fonts
+$font-stack: Varela-Round, HighlandGothicFLF, Helvetica, sans-serif;
+$font-title: Varela-Round, Helvetica, sans-serif;
+$font-title2: Varela-Round, Helvetica, sans-serif;
+
+//paddings and marigns
+$padding-large: 8rem;
+$padding-large-sm: 3rem;
+$padding-medium: 3.5rem;
+$padding-medium-sm: 1rem;
+
+//Screen sizes
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+@mixin sm {
+   @media (min-width: #{$screen-sm-min}) {
+      @content;
+   }
+}
+
+// Medium devices
+@mixin md {
+   @media (min-width: #{$screen-md-min}) {
+      @content;
+   }
+}
+
+// Large devices
+@mixin lg {
+   @media (min-width: #{$screen-lg-min}) {
+      @content;
+   }
+}
+
+// Extra large devices
+@mixin xl {
+   @media (min-width: #{$screen-xl-min}) {
+      @content;
+   }
+}
+
+@mixin rwd($screen) {
+   @media (min-width: $screen+"px") {
+      @content;
+   }
+}
+
+@mixin transform($property) {
+   -webkit-transform: $property;
+   -ms-transform: $property;
+   transform: $property;
+}
+
+// @mixin transition($property) {
+//    -webkit-transition: $property;
+//    -ms-transition: $property;
+//    transition: $property;
+// }
+
+@mixin transition($transitions...) {
+   $unfoldedTransitions: ();
+   @each $transition in $transitions {
+      $unfoldedTransitions: append(
+         $unfoldedTransitions,
+         unfoldTransition($transition),
+         comma
+      );
+   }
+
+   -webkit-transition: $unfoldedTransitions;
+   -ms-transition: $unfoldedTransitions;
+   transition: $unfoldedTransitions;
+}
+
+@function unfoldTransition($transition) {
+   // Default values
+   $property: all;
+   $duration: 0.2s;
+   $easing: null; // Browser default is ease, which is what we want
+   $delay: null; // Browser default is 0, which is what we want
+   $defaultProperties: ($property, $duration, $easing, $delay);
+
+   // Grab transition properties if they exist
+   $unfoldedTransition: ();
+   @for $i from 1 through length($defaultProperties) {
+      $p: null;
+      @if $i <= length($transition) {
+         $p: nth($transition, $i);
+      } @else {
+         $p: nth($defaultProperties, $i);
+      }
+      $unfoldedTransition: append($unfoldedTransition, $p);
+   }
+
+   @return $unfoldedTransition;
+}
+
+@mixin opacity($opacity) {
+   opacity: $opacity;
+   $opacity-ie: $opacity * 100;
+   filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin transitionDefault() {
+   -webkit-transition: 200ms linear;
+   -ms-transition: 200ms linear;
+   transition: 200ms linear;
+}
+
+@mixin centerElement {
+   margin: 0 auto;
+}
+
+@mixin positionAbsoluteCenter {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   @include transform(translate(-50%, -50%));
+}
+
+@mixin positionAbsoluteBottom {
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   @include transform(translateX(-50%));
+}
+
+@mixin keyframes($animation-name) {
+   @-webkit-keyframes #{$animation-name} {
+      @content;
+   }
+   @-moz-keyframes #{$animation-name} {
+      @content;
+   }
+   @-ms-keyframes #{$animation-name} {
+      @content;
+   }
+   @-o-keyframes #{$animation-name} {
+      @content;
+   }
+   @keyframes #{$animation-name} {
+      @content;
+   }
+}
+
+@mixin animation($str) {
+   -webkit-animation: #{$str};
+   -moz-animation: #{$str};
+   -ms-animation: #{$str};
+   -o-animation: #{$str};
+   animation: #{$str};
+}
+
+@include keyframes(moving-background) {
+   0% {
+      background-position: 0%;
+   }
+   100% {
+      background-position: 100%;
+   }
+}
+
+@mixin longFade() {
+   @include animation(fadeIn 1s ease-in-out);
+}

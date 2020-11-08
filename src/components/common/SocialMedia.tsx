@@ -1,0 +1,52 @@
+import React from "react";
+
+export default function SocialMedia() {
+   return (
+      <>
+         <a
+            href="https://www.linkedin.com/in/ioanacatalina/"
+            target="_blank"
+            rel="noreferrer"
+         >
+            <img
+               src={require("../../img/sm_linkedin.png").default}
+               className="img-socialmedia"
+               alt="Linkedin"
+            />
+         </a>
+         <a
+            href="https://twitter.com/ioanacatalinae"
+            target="_blank"
+            rel="noreferrer"
+         >
+            <img
+               src={require("../../img/sm_twitter.png").default}
+               className="img-socialmedia"
+               alt="Twitter"
+            />
+         </a>
+         <a
+            href="https://github.com/ioanacatalina33"
+            target="_blank"
+            rel="noreferrer"
+         >
+            <img
+               src={require("../../img/sm_github.png").default}
+               className="img-socialmedia"
+               alt="GitHub"
+            />
+         </a>
+         <a
+            href="https://www.ioanacatalina.com/"
+            target="_blank"
+            rel="noreferrer"
+         >
+            <img
+               src={require("../../img/sm_photo.png").default}
+               className="img-socialmedia"
+               alt="Photography"
+            />
+         </a>
+      </>
+   );
+}

@@ -1,0 +1,289 @@
+@import "~bootstrap/scss/bootstrap.scss";
+@import "./components.scss";
+@import "./animations.scss";
+
+body,
+html {
+   min-height: 100vh !important;
+   height: 100vh;
+}
+
+body {
+   font-size: $text-normal;
+   color: $color-text;
+   margin: 0;
+   font-family: $font-stack;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background-color: $color-background;
+   background-image: url("../img/bg2.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+   background-attachment: fixed;
+
+   @include md {
+      font-size: $text-normal-md;
+   }
+}
+
+h1 {
+   text-align: center;
+   font-weight: 600;
+   font-family: $font-title;
+   font-size: $text-giant;
+   // text-transform: uppercase;
+   @include sm {
+      font-size: $text-giant-sm;
+   }
+   @include md {
+      font-size: $text-giant-md;
+   }
+   @include lg {
+      font-size: $text-giant-lg;
+   }
+}
+
+h2 {
+   text-align: center;
+   font-family: $font-title;
+   text-transform: uppercase;
+
+   font-size: $text-extra-large;
+   padding: 1rem 1rem 2rem 1rem;
+   position: relative;
+   @include sm {
+      font-size: $text-extra-large-sm;
+   }
+   @include md {
+      font-size: $text-extra-large-md;
+   }
+   @include lg {
+      font-size: $text-extra-large-lg;
+   }
+}
+
+h2::after {
+   content: "";
+   position: absolute;
+   width: 15%;
+   height: 1px;
+   @include positionAbsoluteBottom;
+   margin-bottom: 0.4rem;
+   border-bottom: 2px solid rgba($color-text, 0.3);
+}
+
+h3 {
+   text-align: center;
+   font-family: $font-title;
+   text-transform: uppercase;
+
+   font-size: $text-extra-large;
+   padding: 1rem 1rem 2rem 1rem;
+   position: relative;
+   @include sm {
+      font-size: $text-extra-large-sm;
+   }
+   @include md {
+      font-size: $text-extra-large-md;
+   }
+   @include lg {
+      font-size: $text-extra-large-lg;
+   }
+}
+
+h3::after {
+   content: "";
+   position: absolute;
+   width: 15%;
+   height: 1px;
+   @include positionAbsoluteBottom;
+   margin-bottom: 0.4rem;
+   border-bottom: 2px solid rgba($color-neutral, 0.4);
+}
+
+h4 {
+   text-align: center;
+   font-family: $font-title2;
+   font-size: $text-medium;
+   text-transform: uppercase;
+   line-height: 1.5;
+   @include sm {
+      font-size: $text-medium-sm;
+   }
+   @include md {
+      font-size: $text-medium-md;
+   }
+   @include lg {
+      font-size: $text-medium-lg;
+   }
+}
+
+h5 {
+   text-align: center;
+   font-family: $font-stack;
+   font-size: 1rem;
+   margin-top: 1rem;
+   margin-bottom: 1rem;
+   line-height: 1.4;
+   @include sm {
+      font-size: 1.1rem;
+   }
+   @include md {
+      font-size: 1.2rem;
+   }
+   @include lg {
+      font-size: 1.4rem;
+   }
+}
+
+.background-color {
+   background-color: $color-background;
+   @include transitionDefault();
+}
+
+.background-color-neutral {
+   background-color: $color-neutral;
+   @include transitionDefault();
+}
+
+.background-img-code {
+   background-image: url("../img/bg2.jpg");
+   background-size: cover;
+   background-position: center;
+   // background-attachment: fixed;
+}
+
+.container-narrow {
+   @include centerElement;
+   max-width: $width-narrow;
+}
+
+.container-medium {
+   @include centerElement;
+   max-width: $width-main;
+}
+
+.container-wide {
+   @include centerElement;
+   max-width: $width-wide;
+}
+
+.container-one-column {
+   @include centerElement;
+   max-width: $width-one-column;
+}
+
+.padding-left-right {
+   padding-left: 1rem;
+   padding-right: 1rem;
+}
+
+.padding-small-bottom,
+.padding-small-top-bottom {
+   padding-bottom: 1rem;
+}
+
+.padding-wide-bottom,
+.padding-wide-top-bottom {
+   padding-bottom: $padding-large-sm;
+
+   @include lg {
+      padding-bottom: $padding-large;
+   }
+}
+
+.padding-wide-top,
+.padding-wide-top-bottom {
+   padding-top: $padding-large-sm;
+
+   @include lg {
+      padding-top: $padding-large;
+   }
+}
+
+.padding-medium-bottom,
+.padding-medium-top-bottom {
+   padding-bottom: $padding-medium-sm;
+
+   @include lg {
+      padding-bottom: $padding-medium;
+   }
+}
+
+.padding-medium-top,
+.padding-medium-top-bottom {
+   padding-top: $padding-medium-sm;
+
+   @include lg {
+      padding-top: $padding-medium;
+   }
+}
+
+.margin-0 {
+   margin: 0rem;
+}
+
+.margin-1 {
+   margin: 1rem;
+}
+
+.fade-in-section {
+   opacity: 0;
+   visibility: hidden;
+
+   @include transition(transform 1.2s ease-out, opacity 1s, visibility 1s);
+   will-change: opacity, transform, visibility;
+}
+
+.fade-in-section.left {
+   @include transform(translateY(20vh));
+
+   @include md {
+      @include transform(translateX(20vh));
+   }
+}
+
+.fade-in-section.right {
+   @include transform(translateY(-20vh));
+
+   @include md {
+      @include transform(translateX(-20vh));
+   }
+}
+
+.fade-in-section.bottom {
+   @include transform(translateY(20vh));
+}
+
+.fade-in-section.is-visible {
+   opacity: 1;
+   @include transform(none);
+   visibility: visible;
+}
+
+.cover-slide {
+   color: $color-header;
+   position: relative;
+   text-align: center;
+   // background: linear-gradient(
+   //    to bottom,
+   //    darken($color-background-header, 5),
+   //    lighten($color-background-header, 15)
+   // );
+   background: radial-gradient(
+      lighten($color-background-header, 20),
+      darken($color-background-header, 1)
+   );
+   padding: 2rem 0rem 0rem 0rem;
+}
+
+.footer {
+   text-align: center;
+   color: $color-footer;
+   background: linear-gradient(
+      to top,
+      darken($color-background-footer, 5),
+      lighten($color-background-footer, 15)
+   );
+}

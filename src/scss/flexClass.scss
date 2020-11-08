@@ -1,0 +1,68 @@
+@import "./flex.scss";
+
+.flex-div {
+   @include flexbox();
+}
+
+.flex-1-1-0 {
+   @include flex(1 1 0px);
+}
+
+.flex-2-1-0 {
+   @include flex(2 1 0px);
+}
+
+.flex-1-0-45 {
+   @include flex(1 0 45%);
+}
+
+.flex-more-columns {
+   @include flexbox();
+   @include flex-direction(column);
+   @include justify-content(space-evenly);
+   @include md {
+      @include flex-direction(row);
+   }
+}
+
+.flex-column-sm-row {
+   @include flex-direction(column);
+   @include sm {
+      @include flex-direction(row);
+   }
+}
+
+.flex-column-item {
+   @include flex(1 1 0px);
+   text-align: center;
+   padding: 1rem;
+   width: 100%;
+}
+
+.justify-content-space-evenly {
+   @include justify-content(space-evenly);
+}
+
+.f-wrap {
+   @include flex-wrap(wrap);
+}
+
+.f-dir-row {
+   @include flex-direction(row);
+}
+
+.f-dir-column {
+   @include flex-direction(column);
+}
+
+.f-align-items-center {
+   @include align-items(center);
+}
+
+.f-justify-content-center {
+   @include justify-content(center);
+}
+
+.f-grow-0 {
+   @include flex-grow(0);
+}
