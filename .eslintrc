@@ -32,10 +32,9 @@
          }
       ],
 
-      "max-len": [1, 80, 2, { "ignoreComments": true }],
+      "max-len": [1, 140, 2, { "ignoreComments": true }],
       "semi": [2, "always"],
       "object-curly-spacing": ["error", "always"],
-      "no-extra-parens": "error",
       "no-multi-spaces": "error",
       "no-unused-vars": ["warn"]
    }

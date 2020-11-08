@@ -4,3 +4,4 @@ utils
 src/img/*
 .env
 .env.default
+.vscode
