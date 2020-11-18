@@ -1,6 +1,7 @@
 import React from "react";
 import { isSM, useWindowSize } from "../../utils/windowsSizeCheck";
 import FadeInSection from "../../utils/FadeInSection";
+import { ID_PORTFOLIO } from "./../../utils/constants";
 import { websites } from "./myapps";
 
 export default function Portfolio() {
@@ -9,7 +10,7 @@ export default function Portfolio() {
    return (
       <div className="background-color-neutral">
          <div className="separator-transparent-above reverse" />
-         <h2 className="padding-medium-top" id="Portfolio">
+         <h2 className="padding-medium-top" id={ID_PORTFOLIO}>
             Portfolio
          </h2>
 

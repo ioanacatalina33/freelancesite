@@ -12,11 +12,11 @@ export interface Testimonial {
 
 export const testimonials = [
    {
-      src: alessandro,
-      name: "Alessandro Caselli",
-      func: "Java Developer, eDreams Barcelona",
+      src: lauraSebu,
+      name: "Laura Sebu",
+      func: "Software Project Manager, Infobest Romania",
       text:
-         "Adventurous, forward-thinking, and energetic Interfaces enthusiast. She brings a fresh and capable contribution to any project, working with her was a pleasure. Her addition to the team proved to be a great choice, and her drive ultimately helped us delivering our new functionalities on time.",
+         "Ioana Catalina and me worked together on a major important project for our customer, Continental Automotive - Tools Department. As a supervisor and colleague, I can say that she is hard working, responsible, talented, passionate and creative. Her artistic skills are fully visible in her software engineering work. Catalina has the ability to learn and comprehend new technologies in short time and adapt to any challenge of the project. She has excellent software design and development technical skills in several areas, she is detail oriented, focused on quality results, customer focused, always looking for feedback. ",
    },
    {
       src: benjaminH,
@@ -26,12 +26,13 @@ export const testimonials = [
          "Passionate, ambitious, focused, competent software developer who always finds a suitable solution. I would work with her again anytime.",
    },
    {
-      src: lauraSebu,
-      name: "Laura Sebu",
-      func: "Software Project Manager, Infobest Romania",
+      src: alessandro,
+      name: "Alessandro Caselli",
+      func: "Java Developer, eDreams Barcelona",
       text:
-         "Ioana Catalina and me worked together on a major important project for our customer, Continental Automotive - Tools Department. As a supervisor and colleague, I can say that she is hard working, responsible, talented, passionate and creative. Her artistic skills are fully visible in her software engineering work. Catalina has the ability to learn and comprehend new technologies in short time and adapt to any challenge of the project. She has excellent software design and development technical skills in several areas, she is detail oriented, focused on quality results, customer focused, always looking for feedback. ",
+         "Adventurous, forward-thinking, and energetic Interfaces enthusiast. She brings a fresh and capable contribution to any project, working with her was a pleasure. Her addition to the team proved to be a great choice, and her drive ultimately helped us delivering our new functionalities on time.",
    },
+
    // {
    //    src: matias,
    //    name: "Matias",

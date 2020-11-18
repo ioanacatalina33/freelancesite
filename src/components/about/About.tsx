@@ -1,28 +1,19 @@
 import React from "react";
 import FadeInSection from "../../utils/FadeInSection";
 import { useWindowSize, isSM, isLG } from "../../utils/windowsSizeCheck";
+import { ID_ABOUT, ID_CONTACT } from "./../../utils/constants";
+import scrollTo from "./../../utils/scrollTo";
 
 export default function About() {
    const windowSize = useWindowSize();
 
    function contactScroll() {
-      let anchorTarget = document.getElementById("Contact");
-      if (anchorTarget !== null) {
-         var headerOffset = 80;
-         var elementPosition =
-            anchorTarget.getBoundingClientRect().top + window.pageYOffset;
-         var offsetPosition = elementPosition - headerOffset;
-
-         window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-         });
-      }
+      scrollTo(ID_CONTACT);
    }
 
    return (
       <div className="background-color">
-         <h2 className="padding-medium-top" id="About">
+         <h2 className="padding-medium-top" id={ID_ABOUT}>
             About me
          </h2>
          <div

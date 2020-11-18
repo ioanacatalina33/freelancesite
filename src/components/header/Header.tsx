@@ -2,21 +2,12 @@ import SocialMedia from "../common/SocialMedia";
 import React from "react";
 import Menu from "./Menu";
 import { Button } from "react-bootstrap";
+import scrollTo from "./../../utils/scrollTo";
+import { ID_ABOUT, ID_TOP } from "./../../utils/constants";
 
 export default function Header() {
    function learnMoreScroll() {
-      let anchorTarget = document.getElementById("About");
-      if (anchorTarget !== null) {
-         var headerOffset = 80;
-         var elementPosition =
-            anchorTarget.getBoundingClientRect().top + window.pageYOffset;
-         var offsetPosition = elementPosition - headerOffset;
-
-         window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-         });
-      }
+      scrollTo(ID_ABOUT);
    }
 
    return (
@@ -27,7 +18,7 @@ export default function Header() {
          />
          <br />
          <br />
-         <h1 id="Top">Ioana Catalina Echim</h1>
+         <h1 id={ID_TOP}>Ioana Catalina Echim</h1>
          <h4>Software developer</h4>
          <SocialMedia />
          <br />

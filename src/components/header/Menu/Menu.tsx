@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
 import useScoll from "../../../utils/useScroll";
 import MyNavbar from "./MyNavbar";
+import { ID_NAVBAR } from "./../../../utils/constants";
 
 export default function Menu() {
    const [sticky, setSticky] = useState(false);
    let scrollY = useScoll();
 
    const didScroll = () => {
-      if (
-         document.getElementById("myNavbar")!.getBoundingClientRect().bottom <=
-            0 &&
-         !sticky
-      ) {
+      let element = document.getElementById(ID_NAVBAR);
+      if (element && element.getBoundingClientRect().bottom <= 0 && !sticky) {
          setSticky(true);
-      } else if (
-         document.getElementById("myNavbar")!.getBoundingClientRect().top > 0
-      ) {
+      } else if (element && element.getBoundingClientRect().top > 0) {
          setSticky(false);
       }
    };

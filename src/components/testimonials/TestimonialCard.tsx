@@ -19,10 +19,8 @@ export default function TestimonialCard(props: { testimonial: Testimonial }) {
                   margin: "1rem 1rem 2rem 1rem",
                }}
             />
-            <br />
             <i>{testimonial.text}</i>
             <div className="text-right">
-               {" "}
                <img
                   src={quotesDownImg}
                   alt=" "
@@ -40,7 +38,7 @@ export default function TestimonialCard(props: { testimonial: Testimonial }) {
          >
             <img
                src={testimonial.src}
-               alt="Java"
+               alt={testimonial.name}
                className="avatar-small-size"
                style={{
                   marginRight: "1rem",

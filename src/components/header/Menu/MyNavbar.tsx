@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import useScoll from "../../../utils/useScroll";
 import MenuItem from "./MenuItem";
+import {
+   ID_ABOUT,
+   ID_CONTACT,
+   ID_PORTFOLIO,
+   ID_RESUME,
+   ID_TESTIMONIALS,
+} from "../../../utils/constants";
+import { ID_NAVBAR } from "./../../../utils/constants";
 
 /*
  * The list of our Menu Titles (Sections) as keys, with their
  * Y-pixel position on the page as the values
  * 'Top' generically references the top of the page
  */
-const menuItems = {
+let menuItems = {
    Top: 0,
    About: null,
    Resume: null,
@@ -24,58 +32,35 @@ export default function MyNavbar({ className }: { className: string }) {
     * Store the active menuItem in state to force update
     * when changed
     */
-   const [activeItem, setActiveItem] = useState<string | null>("Top");
+   const [activeItem, setActiveItem] = useState<string | null>("");
+   const scrollY = useScoll();
 
-   /*
-    * The MutationObserver allows us to watch for a few different
-    * events, including page resizing when new elements might be
-    * added to the page (potentially changing the location of our
-    * anchor points)
-    * We also listen to the scroll event in order to update based
-    * on our user's scroll depth
-    */
    useEffect(() => {
-      // const observer = new MutationObserver(getAnchorPoints);
-      // observer.observe(document.getElementById("root")!, {
-      //    childList: true,
-      //    subtree: true,
-      // });
       getAnchorPoints();
    }, []);
+
+   useEffect(() => {
+      handleScroll();
+   }, [scrollY]);
 
    /*
     * Programmatically determine where to set AnchorPoints for our Menu
     */
    const getAnchorPoints = () => {
       const curScroll = window.scrollY - 150;
-      // const viewPortHeight = Math.max(
-      //    document.documentElement.clientHeight,
-      //    window.innerHeight || 0
-      // );
       for (const key in menuItems) {
-         menuItems[key] =
-            document.getElementById(key)!.getBoundingClientRect().top +
-            curScroll;
-         if (key === "Contact" && menuItems[key] !== null) {
-            menuItems[key] = menuItems[key]! - 250;
+         let element = document.getElementById(key);
+         if (element !== null) {
+            menuItems[key] = element.getBoundingClientRect().top + curScroll;
+            if (key === ID_CONTACT && menuItems[key] !== null) {
+               menuItems[key] = menuItems[key]! - 250;
+            }
+         } else {
+            menuItems[key] = -1;
          }
       }
-      //const bottom = document.body.offsetHeight;
       handleScroll();
    };
-
-   /*
-    * Determine which section the user is viewing, based on their scroll-depth
-    * Locating the active section allows us to update our MenuItems to show which
-    * item is currently active
-    */
-
-   useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-         window.removeEventListener("scroll", handleScroll);
-      };
-   });
 
    function handleScroll() {
       const curPos = window.scrollY;
@@ -90,45 +75,48 @@ export default function MyNavbar({ className }: { className: string }) {
        * If your items are out-of-order, this code will not function correctly
        */
 
-      for (const section in menuItems) {
-         curSection = menuItems[section]! >= curPos ? curSection : section;
-         if (curSection !== section) {
-            break;
+      for (const key in menuItems) {
+         let keyPosition = menuItems[key];
+         if (keyPosition !== null && keyPosition !== -1) {
+            curSection = keyPosition >= curPos ? curSection : key;
+            if (curSection !== key) {
+               break;
+            }
          }
       }
-      if (curSection !== activeItem) {
+      if (curSection !== activeItem && curSection !== null) {
          setActiveItem(curSection);
       }
    }
 
    return (
-      <Navbar collapseOnSelect id="myNavbar" expand="lg" className={className}>
+      <Navbar collapseOnSelect id={ID_NAVBAR} expand="lg" className={className}>
          <Navbar.Toggle aria-controls="basic-navbar-nav" />
          <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
                <MenuItem
-                  itemName="About"
-                  active={activeItem === "About"}
+                  itemName={ID_ABOUT}
+                  active={activeItem === ID_ABOUT}
                   eventKey="1"
                />
                <MenuItem
-                  itemName="Resume"
-                  active={activeItem === "Resume"}
+                  itemName={ID_RESUME}
+                  active={activeItem === ID_RESUME}
                   eventKey="2"
                />
                <MenuItem
-                  itemName="Portfolio"
-                  active={activeItem === "Portfolio"}
+                  itemName={ID_PORTFOLIO}
+                  active={activeItem === ID_PORTFOLIO}
                   eventKey="3"
                />
                <MenuItem
-                  itemName="Testimonials"
-                  active={activeItem === "Testimonials"}
+                  itemName={ID_TESTIMONIALS}
+                  active={activeItem === ID_TESTIMONIALS}
                   eventKey="4"
                />
                <MenuItem
-                  itemName="Contact"
-                  active={activeItem === "Contact"}
+                  itemName={ID_CONTACT}
+                  active={activeItem === ID_CONTACT}
                   eventKey="5"
                />
             </Nav>

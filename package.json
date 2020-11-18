@@ -25,25 +25,11 @@
          "eslint --fix"
       ]
    },
-   "keywords": [
-      "freelance",
-      "software",
-      "developer",
-      "programmer",
-      "services",
-      "react",
-      "reactjs",
-      "javascript",
-      "js",
-      "programming",
-      "it",
-      "job",
-      "freelancer"
-   ],
    "author": "Ioana Catalina Echim",
    "license": "ISC",
    "dependencies": {
       "axios": "^0.20.0",
+      "core-js": "^3.6.5",
       "cors": "^2.8.5",
       "express": "^4.17.1",
       "nodemailer": "^6.4.13",

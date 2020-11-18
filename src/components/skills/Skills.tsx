@@ -21,7 +21,7 @@ export default function Skills() {
                      >
                         <img
                            src={logo.src}
-                           alt="Java"
+                           alt={logo.name}
                            className="skills-logos"
                         />
                         <br />
